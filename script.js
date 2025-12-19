@@ -191,8 +191,8 @@ function showPage(pageId) {
     
     // Special handling for app page
     if (pageId === 'app-page') {
-        // Show goal setup first
-        showSection('goal-setup');
+        // Show dashboard directly in the demo (skip login/goal-setup)
+        showSection('dashboard');
         // Initialize app
         initializeApp();
     }
@@ -276,35 +276,15 @@ function loadSectionData(sectionId) {
 function initializeEventListeners() {
     console.log('🔧 Initializing event listeners...');
     
-    // Start Journey Button
+    // Start Journey Button — go straight to app/dashboard (no login in demo)
     const startButton = document.getElementById('start-journey-btn');
     if (startButton) {
         console.log('✅ Found start journey button');
-        startButton.addEventListener('click', switchToLogin);
+        startButton.addEventListener('click', function() {
+            showPage('app-page');
+        });
     } else {
         console.error('❌ Start journey button not found!');
-    }
-    
-    // Login Form
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            console.log('📝 Login form submitted');
-            handleLogin();
-        });
-    } else {
-        console.error('❌ Login form not found!');
-    }
-    
-    // Direct login button click as backup
-    const loginBtn = document.getElementById('login-submit-btn');
-    if (loginBtn) {
-        loginBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            console.log('🖱️ Login button clicked directly');
-            handleLogin();
-        });
     }
     
     // Setup goal forms
@@ -314,51 +294,6 @@ function initializeEventListeners() {
     setupWorkoutForm();
     setupProfileForm();
     setupMeasurementForm();
-}
-
-function handleLogin() {
-    console.log('🎯 Handling login process...');
-    
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
-    
-    if (!username || !password) {
-        console.error('❌ Username or password fields not found');
-        alert('Login form not properly loaded. Please refresh the page.');
-        return;
-    }
-    
-    const usernameValue = username.value.trim();
-    const passwordValue = password.value.trim();
-    
-    console.log('📋 Login attempt:', { username: usernameValue, password: '***' });
-    
-    if (usernameValue && passwordValue) {
-        // Show loading state
-        const loginBtn = document.querySelector('.login-btn');
-        if (loginBtn) {
-            loginBtn.textContent = 'Signing In...';
-            loginBtn.style.background = 'linear-gradient(45deg, #00ff00, #00cc00)';
-            loginBtn.disabled = true;
-        }
-        
-        console.log('✅ Login successful, switching to app...');
-        
-        // Simulate API call delay
-        setTimeout(() => {
-            showPage('app-page');
-            
-            // Reset login form
-            if (loginBtn) {
-                loginBtn.textContent = 'Sign In';
-                loginBtn.style.background = '';
-                loginBtn.disabled = false;
-            }
-            document.getElementById('login-form').reset();
-        }, 1000);
-    } else {
-        alert('Please enter both username and password');
-    }
 }
 
 // ===== GOAL SETUP HANDLING =====
