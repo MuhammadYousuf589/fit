@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebFit Tracker - Fitness Revolution</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+  <!-- ===== LANDING PAGE ===== -->
+  <div id="landing-page" class="page active">
+    <div class="landing-container">
+      <header class="landing-header">
+        <h1>💪 WebFit Tracker</h1>
+        <p class="tagline">Transform Your Fitness Journey</p>
+      </header>
+            
+      <main class="landing-content">
+        <section class="hero-section">
+          <div class="hero-content">
+            <h2>Why WebFit Tracker?</h2>
+            <p class="hero-text">
+              WebFit Tracker is your comprehensive fitness companion designed to 
+              revolutionize how you track, analyze, and achieve your fitness goals. 
+              We believe everyone deserves a personalized fitness journey with 
+              professional-grade tools at your fingertips.
+            </p>
+          </div>
+        </section>
+
+        <section class="features-section">
+          <div class="feature-card">
+            <h3>🎯 What Does It Help?</h3>
+            <ul>
+              <li>Track workouts and progress with precision</li>
+              <li>Set and monitor achievable fitness goals</li>
+              <li>Analyze your fitness data with smart charts</li>
+              <li>Maintain body measurements and BMI tracking</li>
+              <li>Access comprehensive exercise library</li>
+              <li>Get personalized insights and recommendations</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <h3>🚀 Future Plans</h3>
+            <ul>
+              <li>AI-powered workout recommendations</li>
+              <li>Social features and community challenges</li>
+              <li>Mobile app development</li>
+              <li>Integration with wearable devices</li>
+              <li>Personalized nutrition tracking</li>
+              <li>Advanced analytics and insights</li>
+              <li>Virtual personal trainer AI</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="mission-section">
+          <h3>Our Mission</h3>
+          <p>
+            To make fitness tracking accessible, intuitive, and motivating for everyone. 
+            We're committed to helping you build sustainable fitness habits that last a lifetime.
+            Join thousands of users who have transformed their lives with WebFit Tracker.
+          </p>
+        </section>
+
+        <div class="cta-section">
+          <button id="start-journey-btn" class="cta-button">
+            Start Your Fitness Journey
+          </button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ===== LOGIN PAGE ===== -->
+  <div id="login-page" class="page">
+    <div class="login-container">
+      <div class="login-card">
+        <h2>Welcome Back!</h2>
+        <p>Sign in to continue your fitness journey</p>
+                
+        <form id="login-form" class="login-form">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your username">
+          </div>
+                    
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+          </div>
+                    
+          <button type="submit" class="login-btn" id="login-submit-btn">Sign In</button>
+        </form>
+                
+        <p class="login-note">
+          Demo: Use any credentials to login
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN APPLICATION ===== -->
+  <div id="app-page" class="page">
+    <!-- Vertical Navigation -->
+    <nav class="vertical-nav active">
+      <div class="nav-header">
+        <h2>WebFit</h2>
+        <button class="menu-toggle" onclick="toggleNav()">☰</button>
+      </div>
+            
+      <div class="nav-links">
+        <button class="nav-link" onclick="showSection('goal-setup')">
+          🎯 Set Goals
+        </button>
+        <div class="nav-divider"></div>
+        <button class="nav-link" onclick="showSection('dashboard')">
+          📊 Dashboard
+        </button>
+        <button class="nav-link" onclick="showSection('log-workout')">
+          🏋️ Log Workout
+        </button>
+        <button class="nav-link" onclick="showSection('history')">
+          📈 History
+        </button>
+        <button class="nav-link" onclick="showSection('bmi-calculator')">
+          ⚖️ BMI Calculator
+        </button>
+        <button class="nav-link" onclick="showSection('body-measurements')">
+          📏 Measurements
+        </button>
+        <button class="nav-link" onclick="showSection('goals')">
+          🎯 Goals
+        </button>
+        <button class="nav-link" onclick="showSection('exercise-library')">
+          📚 Exercise Library
+        </button>
+        <button class="nav-link" onclick="showSection('progress-charts')">
+          📊 Progress Charts
+        </button>
+        <div class="nav-divider"></div>
+        <button class="nav-link logout-btn" onclick="logout()">
+          🚪 Logout
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content with-nav">
+  <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+      <!-- Goal Setup Section (First after login) -->
+      <section id="goal-setup" class="section active">
+        <div class="goal-setup-container">
+          <h2>🎯 Set Your Fitness Goals</h2>
+          <p class="setup-description">
+            Before we start, let's set some goals to keep you motivated and focused on your fitness journey!
+          </p>
+                    
+          <div class="goal-setup-form">
+            <h3>Create Your First Goal</h3>
+            <form id="initial-goal-form">
+              <div class="form-group">
+                <label for="initial-goal-type">Goal Type:</label>
+                <select id="initial-goal-type" name="goal_type" required>
+                  <option value="">Select goal type</option>
+                  <option value="target_weight">Target Weight</option>
+                  <option value="workout_frequency">Weekly Workouts</option>
+                  <option value="calorie_burn">Monthly Calories Burned</option>
+                  <option value="exercise_target">Exercise Target</option>
+                </select>
+              </div>
+                            
+              <div class="form-group">
+                <label for="initial-target-value">Target Value:</label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <input type="number" id="initial-target-value" name="target_value" step="0.1" required 
+                       placeholder="Enter target value" style="flex: 1;">
+                  <span id="initial-target-unit" style="color: #FF0000; font-weight: bold; min-width: 60px;">kg</span>
+                </div>
+              </div>
+                            
+              <div class="form-group">
+                <label for="initial-target-date">Target Date (optional):</label>
+                <input type="date" id="initial-target-date" name="target_date">
+              </div>
+                            
+              <button type="submit" class="setup-btn">Set Goal & Continue</button>
+            </form>
+          </div>
+                    
+          <div class="setup-note">
+            <p>💡 Tip: You can always modify your goals later in the Goals section. Setting clear goals helps maintain motivation!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="section">
+        <h2>Your Fitness Dashboard</h2>
+                
+        <!-- Profile Summary -->
+        <div class="profile-summary">
+          <h3>Your Profile</h3>
+          <div id="profile-display">
+            <p><strong>Name:</strong> <span id="profile-name">Not set</span></p>
+            <p><strong>Age:</strong> <span id="profile-age">-</span></p>
+            <p><strong>Height:</strong> <span id="profile-height">-</span> cm</p>
+            <p><strong>Weight:</strong> <span id="profile-weight">-</span> kg</p>
+            <p><strong>BMI:</strong> <span id="profile-bmi">-</span> (<span id="profile-bmi-category">-</span>)</p>
+          </div>
+          <button onclick="showSection('bmi-calculator')" class="edit-profile-btn">Edit Profile</button>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="current-streak">0</div>
+            <div class="stat-label">Current Streak (days)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="monthly-workouts">0</div>
+            <div class="stat-label">Workouts This Month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="monthly-calories">0</div>
+            <div class="stat-label">Monthly Calories</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="active-days">0</div>
+            <div class="stat-label">Active Days</div>
+          </div>
+        </div>
+
+        <!-- Recent Workouts -->
+        <div id="recent-workouts">
+          <h3>Recent Workouts</h3>
+          <ul id="workout-list"></ul>
+        </div>
+
+        <!-- Quick Stats -->
+        <div id="workout-stats">
+          <h3>Quick Overview</h3>
+          <p>Total Workouts: <span id="total-workouts-count">0</span></p>
+          <p>Total Calories Burned: <span id="total-calories">0</span></p>
+          <p>Active Goals: <span id="active-goals-count">0</span></p>
+        </div>
+      </section>
+
+      <!-- Log Workout Section -->
+      <section id="log-workout" class="section">
+        <h2>Log a New Workout</h2>
+        <form id="workout-form">
+          <div class="form-group">
+            <label for="exercise">Exercise:</label>
+            <select id="exercise" name="exercise_name" required>
+              <option value="">Select exercise</option>
+              <option value="Running">Running</option>
+              <option value="Cycling">Cycling</option>
+              <option value="Swimming">Swimming</option>
+              <option value="Push-ups">Push-ups</option>
+              <option value="Squats">Squats</option>
+              <option value="Deadlift">Deadlift</option>
+              <option value="Bench Press">Bench Press</option>
+              <option value="Yoga">Yoga</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" name="duration_minutes" required min="1" placeholder="Enter duration">
+          </div>
+
+          <div class="form-group">
+            <label for="calories">Calories Burned:</label>
+            <input type="number" id="calories" name="calories_burned" required min="1" placeholder="Enter calories burned">
+          </div>
+
+          <button type="submit" class="setup-btn">Log Workout</button>
+        </form>
+        <p id="form-message"></p>
+      </section>
+
+      <!-- BMI Calculator Section -->
+      <section id="bmi-calculator" class="section">
+        <h2>BMI & Health Calculator</h2>
+                
+        <div id="health-results" style="display:none;">
+          <!-- Health metrics will be displayed here -->
+        </div>
+
+        <div id="bmi-result" style="display:none; background-color: rgba(255, 0, 0, 0.1); padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #FF0000;">
+          <h3>Your BMI Result</h3>
+          <p><strong>BMI:</strong> <span id="bmi-value">0</span></p>
+          <p><strong>Category:</strong> <span id="bmi-category">-</span></p>
+        </div>
+
+        <form id="profile-form">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+          </div>
+                    
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age">
+          </div>
+                    
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+                    
+          <div class="form-group">
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height_cm" placeholder="Enter height in cm">
+          </div>
+                    
+          <div class="form-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight_kg" placeholder="Enter weight in kg">
+          </div>
+                    
+          <button type="button" onclick="calculateHealthMetrics()" class="setup-btn">
+            Calculate Health Metrics
+          </button>
+                    
+          <button type="submit" class="setup-btn">
+            Save Profile & BMI
+          </button>
+        </form>
+        <p id="bmi-message"></p>
