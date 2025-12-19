@@ -110,3 +110,56 @@ body {
 }
 
 /* (rest of the large style file preserved — copied from original public/style.css) */
+
+/* Demo: responsive nav fixes to restore original vertical nav appearance */
+.vertical-nav{
+  position:fixed;
+  left:0;
+  top:0;
+  height:100%;
+  width:220px;
+  background: rgba(10,10,10,0.85);
+  padding:20px 12px;
+  overflow:auto;
+  z-index:1000;
+}
+.vertical-nav .nav-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.vertical-nav .nav-links{ display:block; }
+.vertical-nav .nav-links .nav-link{
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:10px 12px;
+  margin:6px 0;
+  background:transparent;
+  border:none;
+  color:var(--primary-white);
+  border-radius:6px;
+  cursor:pointer;
+}
+.vertical-nav .nav-links .nav-link:hover{ background: rgba(255,255,255,0.04); }
+.main-content.with-nav{ margin-left:240px; padding:28px; }
+.mobile-nav-toggle{ display:none; position:fixed; top:12px; left:12px; z-index:1100; background:rgba(0,0,0,0.6); color:#fff; border:none; padding:8px 10px; border-radius:6px; }
+.menu-toggle{ display:none; }
+
+/* Small screens: make nav horizontal and show mobile toggle */
+@media (max-width: 900px){
+  .vertical-nav{
+    position:relative;
+    width:100%;
+    height:auto;
+    display:flex;
+    flex-direction:row;
+    padding:8px;
+    background: rgba(10,10,10,0.7);
+  }
+  .vertical-nav .nav-links{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .vertical-nav .nav-links .nav-link{ display:inline-block; padding:6px 8px; font-size:0.9rem; }
+  .main-content.with-nav{ margin-left:0; padding:16px; }
+  .mobile-nav-toggle{ display:block; }
+  .menu-toggle{ display:block; }
+}
+
+/* Minor polish for buttons to remove default browser styles */
+button.nav-link, .mobile-nav-toggle, .menu-toggle{ background:none; border:1px solid rgba(255,255,255,0.06); }
+

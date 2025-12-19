@@ -493,19 +493,28 @@ function initializeApp() {
 
 // ===== MAIN INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("🏋️‍♂️ WebFit Tracker Loaded!");
-    
+    console.log("🏋️‍♂️ WebFit Tracker Demo Loaded — opening dashboard");
+
     // Initialize all event listeners
     initializeEventListeners();
-    
-    // Start with landing page
-    showPage('landing-page');
-    
-    // Debug info
+
+    // For the demo, open the app page (dashboard) directly — no auth
+    showPage('app-page');
+
+    // Debug info (non-fatal)
     console.log('📄 All pages:', document.querySelectorAll('.page').length);
     console.log('🔘 Start button:', document.getElementById('start-journey-btn'));
-    console.log('🔘 Login form:', document.getElementById('login-form'));
 });
+
+// Mobile nav helper (used by small-screen toggle button)
+function toggleMobileNav(){
+    const nav = document.querySelector('.vertical-nav');
+    const mainContent = document.querySelector('.main-content');
+    if(nav && mainContent){
+        nav.classList.toggle('active');
+        mainContent.classList.toggle('with-nav');
+    }
+}
 
 // ===== EXISTING FITNESS TRACKER FUNCTIONS =====
 
