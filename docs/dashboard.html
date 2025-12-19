@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo App — Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="page-dashboard">
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <h2>Dashboard</h2>
+      <div>
+        <button id="btn-logout" class="btn small">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <section class="card profile">
+      <h3>Profile</h3>
+      <div id="profile-info"></div>
+      <button id="btn-edit-profile" class="btn small">Edit</button>
+
+      <form id="form-profile" class="form hidden">
+        <label>Name<input id="profile-name" required></label>
+        <label>Email<input id="profile-email" type="email" required></label>
+        <button type="submit" class="btn">Save</button>
+        <button type="button" id="cancel-profile" class="btn alt">Cancel</button>
+      </form>
+    </section>
+
+    <section class="card items">
+      <h3>Your Items</h3>
+      <form id="form-item" class="form-inline">
+        <input id="item-title" placeholder="Title" required>
+        <input id="item-desc" placeholder="Description">
+        <button class="btn">Add</button>
+      </form>
+
+      <ul id="item-list" class="list"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
